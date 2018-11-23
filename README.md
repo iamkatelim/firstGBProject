@@ -1,6 +1,7 @@
-EKT 221 DATA STRUCTURE AND ALGORITHM
+# EKT 221 DATA STRUCTURE AND ALGORITHM
 
 ASSIGNMENT 2
+
 MEMBERS = LIM MAY YANN 171020907
 	  LEE RON SHENG 171020905
 PROGRAM = RK20 - COMPUTER ENGINEERING
@@ -8,7 +9,7 @@ LANGUAGE = PYTHON 2.7.13
 
 
 
-# Installation Python in Windows: 
+## Installation Python in Windows: 
 
 	*Setting the PATH variable
 	*After you have the program operating correctly, then you can execute it by double-clicking on the program's icon.
@@ -28,7 +29,7 @@ LANGUAGE = PYTHON 2.7.13
 
 	 Set Python(e.g., C:\Python24) to your system PATH that folder name is the path to Python.
 
-# Running the test
+## Running the test
 
 	*To run .py file in command prompt
 
