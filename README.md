@@ -2,6 +2,8 @@
 
 **ASSIGNMENT 2**
 
+
+## Introductions
 **MEMBERS** =
  - LIM MAY YANN 171020907
  - LEE RON SHENG 171020905<br />
@@ -40,3 +42,6 @@
 	*Navigate to where your python file is, using the commands 'cd' (change directory) and 'dir' (to show files in the directory, to verify your head).
 
 	*Type 'python first.py' to execute and run.
+
+
+## Functionality
