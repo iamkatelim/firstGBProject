@@ -114,7 +114,7 @@ def deleteNode(root, key):
 
         # If the kye to be delete is greater than the root's key
     # then it lies in right subtree
-    elif (key > root.val):
+    elif key > root.val:
         root.right = deleteNode(root.right, key)
 
         # If key is same as root's key, then this is the node
@@ -137,10 +137,10 @@ def deleteNode(root, key):
         temp = minValue(root.right)
 
         # Copy the inorder successor's content to this node
-        root.val = temp.val
+        root.val = temp
 
         # Delete the inorder successor
-        root.right = deleteNode(root.right, temp.val)
+        root.right = deleteNode(root.right, temp)
 
     return root
 
@@ -149,7 +149,7 @@ def deleteNode(root, key):
 
 
 def main(operation, data):
-    print("\n\n---------------------------------------------------------\n")
+    print("\n\n--------------------------------------------------------------\n")
     r = Node(50)
     insert(r, Node(30))
     insert(r, Node(20))
@@ -160,11 +160,19 @@ def main(operation, data):
 
     if data is not None:
         if operation == 'insert':
-            insert(r, Node(data))
             print("%d Inserted" % data)
+            inserted_node.append(data)
+            inserted_node2 = map(str, inserted_node)
+            for _ in inserted_node2:
+                inserted_node3 = int(_)
+                insert(r, Node(inserted_node3))
         elif operation == 'delete':
-            deleteNode(r, data)
-            print("%d Inserted" % data)
+            print("%d Deleted" % data)
+            deleted_node.append(data)
+            deleted_node2 = map(str, deleted_node)
+            for _ in deleted_node2:
+                deleted_node3 = int(_)
+                deleteNode(r, deleted_node3)
     elif data == 0:
         return
 
@@ -199,42 +207,155 @@ def main(operation, data):
     end = time.clock() * 1000
     print('time taken = %.6f ms\n' % (end - start))
 
+    start = time.clock() * 1000
     print("\nDepth of tree is %d" % (minDepth(r)))
-    print("\nSize of the tree is %d" % (size(r)))
+    end = time.clock() * 1000
+    print('time taken = %.6f ms\n' % (end - start))
 
-    decision1 = input("1. Insert Node\n2. Delete Node\n3. Delete tree\n4. Exit\nDecision = ")
+    start = time.clock() * 1000
+    print("\nSize of the tree is %d" % (size(r)))
+    end = time.clock() * 1000
+    print('time taken = %.6f ms\n' % (end - start))
+
+    decision1 = input("\nOperations =\n1. Insert Node\n2. Delete Node\n3. Delete tree\n\nTesting = \n4. 10 Nodes\n5. "
+                      "20 Nodes\n6. 30 Nodes\n\n7. Exit\nDecision = ")
     if decision1 == 1:
         insert_node1 = input("Enter node number = ")
         main('insert', insert_node1)
     elif decision1 == 2:
         delete_node1 = input("Enter node number = ")
-        main('insert', delete_node1)
+        main('delete', delete_node1)
+    elif decision1 == 3:
+        if r is not None:
+            for _ in inserted_node:
+                deleteNode(r, _)
+                print("deleting %d" % _)
+        else:
+            print("Tree deleted")
     elif decision1 == 4:
+        testing_nodes(10)
+    elif decision1 == 5:
+        testing_nodes(20)
+    elif decision1 == 6:
+        testing_nodes(30)
+    elif decision1 == 7:
         import sys
         sys.exit()
 
-    # print("\nDelete 20")
-    # r = deleteNode(r, 20)
-    # inorder(r)
 
+def testing_nodes(total):
+    import random
+    r = None
+    x = 0
+    for x in range(total):
+        x += 1
+        number = random.randint(1, 101)
+        random_node.append(number)
+        if x == 1:
+            r = Node(number)
+        else:
+            insert(r, Node(number))
 
-# os.system('cls')  # on windows
+    print("Inorder traversal of binary tree is: ")
+    import time
+
+    start = time.clock() * 1000
+    inorder(r)
+    end = time.clock() * 1000
+    print('time taken = %.6f ms\n\n' % (end - start))
+
+    print("Preorder traversal of binary tree is: ")
+    start = time.clock() * 1000
+    preorder(r)
+    end = time.clock() * 1000
+    print('time taken = %.6f ms\n\n' % (end - start))
+
+    print("Postorder traversal of binary tree is: ")
+    start = time.clock() * 1000
+    postorder(r)
+    end = time.clock() * 1000
+    print('time taken = %.6f ms\n\n' % (end - start))
+
+    start = time.clock() * 1000
+    print("\nSmallest value in Binary Search Tree is = %d" % (minValue(r)))
+    end = time.clock() * 1000
+    print('time taken = %.6f ms\n\n' % (end - start))
+
+    start = time.clock() * 1000
+    print("\nLargest value in Binary Search Tree is = %d" % (maxValue(r)))
+    end = time.clock() * 1000
+    print('time taken = %.6f ms\n' % (end - start))
+
+    start = time.clock() * 1000
+    print("\nDepth of tree is %d" % (minDepth(r)))
+    end = time.clock() * 1000
+    print('time taken = %.6f ms\n' % (end - start))
+
+    start = time.clock() * 1000
+    print("\nSize of the tree is %d" % (size(r)))
+    end = time.clock() * 1000
+    print('time taken = %.6f ms\n' % (end - start))
+
+    if total == 10:
+        decision_random = input("\n1. 20 Nodes\n2. 30 Nodes\n3. Delete tree\n4. Back to main menu\nDecision = ")
+        if decision_random == 1:
+            testing_nodes(20)
+        elif decision_random == 2:
+            testing_nodes(30)
+        elif decision_random == 3:
+            start = time.clock() * 1000
+            if r is not None:
+                for _ in random_node:
+                    deleteNode(r, _)
+                    print("deleting %d" % _)
+            end = time.clock() * 1000
+            print('time taken = %.6f ms\n' % (end - start))
+            main('none', 0)
+        elif decision_random == 4:
+            main('none', 0)
+    elif total == 20:
+        decision_random = input("\n1. 20 Nodes\n2. 30 Nodes\n3. Delete tree\n4. Back to main menu\nDecision = ")
+        if decision_random == 1:
+            testing_nodes(10)
+        elif decision_random == 2:
+            testing_nodes(30)
+        elif decision_random == 3:
+            start = time.clock() * 1000
+            if r is not None:
+                for _ in random_node:
+                    deleteNode(r, _)
+                    print("deleting %d" % _)
+            end = time.clock() * 1000
+            print('time taken = %.6f ms\n' % (end - start))
+            main('none', 0)
+        elif decision_random == 4:
+            main('none', 0)
+    elif total == 30:
+        decision_random = input("\n1. 20 Nodes\n2. 30 Nodes\n3. Delete tree\n4. Back to main menu\nDecision = ")
+        if decision_random == 1:
+            testing_nodes(10)
+        elif decision_random == 2:
+            testing_nodes(20)
+        elif decision_random == 3:
+            start = time.clock() * 1000
+            if r is not None:
+                for _ in random_node:
+                    deleteNode(r, _)
+                    print("deleting %d" % _)
+            end = time.clock() * 1000
+            print('time taken = %.6f ms\n' % (end - start))
+            main('none', 0)
+        elif decision_random == 4:
+            main('none', 0)
+
 
 print("--------------------------------------------------------------\n")
 print("LIM MAY YANN 171020907\nLEE RON SHENG 171020905\n")
 print("Program = RK20 - Computer Engineering")
 print("--------------------------------------------------------------\n\n\n")
 
+# list for inserted node
+deleted_node = []
+inserted_node = []
+random_node = []
 main('none', 0)
-
-if __name__ == '__main__':
-    decision = input("1. Insert Node\n2. Delete Node\n3. Delete tree\nDecision = ")
-    if decision == 1:
-        insert_node = input("Enter node number = ")
-        main('insert', insert_node)
-    elif decision == 2:
-        delete_node = input("Enter node number = ")
-        main('insert', delete_node)
-
-    # r = deleteTree(r)
-    # print("Tree deleted! ")
