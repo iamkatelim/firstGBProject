@@ -4,10 +4,7 @@
 
 
 ## Introductions
-**MEMBERS** =
- - LIM MAY YANN 171020907 <br />
- 
-**PROGRAM** = RK20 - COMPUTER ENGINEERING<br />
+
 **LANGUAGE = PYTHON 2.7.13<br />**
 
 
